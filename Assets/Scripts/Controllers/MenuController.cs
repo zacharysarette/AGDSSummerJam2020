@@ -7,6 +7,12 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     [SerializeField]
+    public GeneralPanelController aboutController;
+    [SerializeField]
+    public GeneralPanelController howToPlayController;
+    [SerializeField]
+    public SettingsController settingsController;
+    [SerializeField]
     private Button buttonStart;
     [SerializeField]
     private Button buttonAbout;
@@ -17,6 +23,13 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     private Button buttonQuit;
 
+    private void Awake()
+    {
+        aboutController.disableCanvas();
+        howToPlayController.disableCanvas();
+        settingsController.disableCanvas();
+    }
+
     public void onButtonStartClick()
     {
         Debug.Log("Opening MainGame");
@@ -25,17 +38,15 @@ public class MenuController : MonoBehaviour
     } 
     public void onButtonAboutClick()
     {
-        Debug.Log("Opening About");
-         
+        aboutController.enableCanvas();
     } 
     public void onButtonHowToPlayClick()
     {
-        Debug.Log("Opening HowToPlay");
-         
+        howToPlayController.enableCanvas();
     } 
     public void onButtonSettingsClick()
     {
-        Debug.Log("Opening Settings");
+        settingsController.enableCanvas();
     } 
     public void onButtonQuitClick()
     {

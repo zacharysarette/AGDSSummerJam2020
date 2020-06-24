@@ -106,10 +106,11 @@ public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1
   private IEnumerator UpdateMusicWithCrossFade(AudioSource original, AudioSource newSource, float transitionTime)
   {
     float t = 0.0f;
+    float volume = original.volume;
     for (t = 0.0f; t <= transitionTime; t += Time.deltaTime)
     {
-      original.volume = 1 - (t / transitionTime);
-      newSource.volume = t / transitionTime;
+      original.volume = volume * (1 - (t / transitionTime));
+      newSource.volume = volume * (t / transitionTime);
       yield return null;
     }
     original.Stop();
@@ -144,4 +145,15 @@ public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1
   {
     sfxSource.volume = volume;
   }
+
+  public float GetSfxVolume()
+  {
+    return sfxSource.volume;
+  }
+
+  public float GetMusicVolume()
+  {
+    return musicSource.volume;
+  }
+
 }
