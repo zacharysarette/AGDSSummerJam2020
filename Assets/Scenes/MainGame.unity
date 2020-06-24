@@ -138,6 +138,36 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 6570866689201548574, guid: d3c6e747c6b6ac843bcf8d1cc2c581b4,
+        type: 3}
+      propertyPath: stoneSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e40f7689097159a45b35f24c0b32f1d2,
+        type: 3}
+    - target: {fileID: 6570866689201548574, guid: d3c6e747c6b6ac843bcf8d1cc2c581b4,
+        type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 2699747040297903696, guid: 13b4d146efd7cd640b2d70c237142847,
+        type: 3}
+    - target: {fileID: 6570866689201548574, guid: d3c6e747c6b6ac843bcf8d1cc2c581b4,
+        type: 3}
+      propertyPath: bottomEdgePrefab
+      value: 
+      objectReference: {fileID: 556198026917029166, guid: cd9f466289b1aa2459f650fe1c8a006d,
+        type: 3}
+    - target: {fileID: 6570866689201548574, guid: d3c6e747c6b6ac843bcf8d1cc2c581b4,
+        type: 3}
+      propertyPath: topEdgePrefab
+      value: 
+      objectReference: {fileID: 556198026917029166, guid: 8a9a627245c55fb46ab4fb33b9f64cf3,
+        type: 3}
+    - target: {fileID: 6570866689201548574, guid: d3c6e747c6b6ac843bcf8d1cc2c581b4,
+        type: 3}
+      propertyPath: gravelSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 35f5111da60f2a44dac029b1d2d0fa27,
+        type: 3}
     - target: {fileID: 6570866689201548768, guid: d3c6e747c6b6ac843bcf8d1cc2c581b4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -208,6 +238,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: b1dde825c07e557488b00ed779430b83,
         type: 3}
+    - target: {fileID: 562343662626442034, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5111146865019191200, guid: 9c0bd083740322c4da05c3b06eda4a29,
         type: 3}
       propertyPath: m_Name

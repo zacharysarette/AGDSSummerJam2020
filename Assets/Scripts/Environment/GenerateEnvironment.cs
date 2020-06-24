@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class GenerateEnvironment : MonoBehaviour
 {
-    private static GenerateEnvironment instance;
-    private void Awake() => instance = this;
+    public static GenerateEnvironment instance = null;
 
-    public static int minBound = 0 - instance.height / 2;
+    public static int minBound => 0 - instance.height / 2;
 
     [Range(0, 100)]
     [SerializeField] private int randomFillPercent;
@@ -17,6 +16,7 @@ public class GenerateEnvironment : MonoBehaviour
     [SerializeField] private bool useRandomSeed;
     [SerializeField] private List<Sprite> tileSprites;
     [SerializeField] private Sprite stoneSprite;
+    [SerializeField] private Sprite gravelSprite;
     [SerializeField]
     private GameObject
         enemyPrefab,
@@ -26,7 +26,11 @@ public class GenerateEnvironment : MonoBehaviour
     private int[,] map;
     GameObject tileParent = null;
 
-    private void Start() => GenerateMap();
+    private void Start()
+    {
+        GenerateMap();
+        instance = this;
+    }
     private void GenerateMap()
     {
         map = new int[width, height];
@@ -162,7 +166,7 @@ public class GenerateEnvironment : MonoBehaviour
                 if (weighting < 50)
                 {
                     go.AddComponent<TileFallCheck>();
-                    sr.color = new Color(0.3f, 0.3f, 0.3f);
+                    sr.sprite = gravelSprite;
                     go.tag = "Tile";
                 }
                 else if (weighting < 90)
