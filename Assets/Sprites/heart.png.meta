@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 3af06b35e9a06ce45864a894dcaf30e0
+=======
+guid: 1c5426725d7c7d3419daaa25b091d810
+>>>>>>> enemyLogic_edgeTiles
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

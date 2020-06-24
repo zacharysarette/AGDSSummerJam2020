@@ -1,7 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
+    public int Health { get; private set; }
+    private bool invulnerable;
+
     [SerializeField]
     private GameObject tileDigPreview;
 
@@ -19,8 +23,6 @@ public class PlayerControls : MonoBehaviour
     private GameObject digPreviewInstance;
 
     private void Start() => digPreviewInstance = Instantiate(tileDigPreview, transform.position, Quaternion.identity);
-    
-
     private void Update()
     {
         if (Input.GetKeyDown(left))
@@ -61,10 +63,40 @@ public class PlayerControls : MonoBehaviour
             digPreviewInstance.transform.position = transform.position - Vector3.up;
         }
 
+        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+            Camera.main.orthographicSize = 20f;
+        else if(Camera.main.orthographicSize != 10f)
+            Camera.main.orthographicSize = 10f;
+
+
         digPreviewInstance.GetComponent<SpriteRenderer>().enabled = isAttacking;
         digPreviewInstance.GetComponent<Collider2D>().enabled = isAttacking;
 
         if (isAttacking)
             digPreviewInstance.GetComponent<Dig>().StartDig();
     }
+
+    public void TakeDamage()
+    {
+        if (!invulnerable)
+            Health--;
+
+        if (Health == 0)
+            Die();
+
+        StartCoroutine(Invulnerability());
+    }
+
+    private void Die()
+    {
+        Debug.Log("Ded");
+    }
+
+    private IEnumerator Invulnerability()
+    {
+        invulnerable = true;
+        yield return new WaitForSeconds(0.5f);
+        invulnerable = false;
+    }
+
 }
