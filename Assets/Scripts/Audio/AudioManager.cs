@@ -114,9 +114,11 @@ public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1
     }
     original.Stop();
   }
+
   public void PlaySfx(AudioClip clip)
   {
-    sfxSource.PlayOneShot(clip);
+        if (!sfxSource.isPlaying)
+            sfxSource.PlayOneShot(clip);     
   }
 
   public void PlaySfx(AudioClip clip, float volume)

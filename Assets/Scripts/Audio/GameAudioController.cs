@@ -7,13 +7,9 @@ public class GameAudioController : MonoBehaviour
     public AudioClip DroppingCrates;
     public AudioClip Crash;
 
-    public void playDroppingCrates()
-    {
-        AudioManager.Instance.PlaySfx(DroppingCrates);
-    }
+    private static GameAudioController instance;
 
-    public void playCrash()
-    {
-        AudioManager.Instance.PlaySfx(Crash);
-    }
+    private void Awake() => instance = this;
+    public static void playDroppingCrates() =>AudioManager.Instance.PlaySfx(instance.DroppingCrates);
+    public static void playCrash() => AudioManager.Instance.PlaySfx(instance.Crash);
 }
