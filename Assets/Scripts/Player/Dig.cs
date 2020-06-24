@@ -21,7 +21,7 @@ public class Dig : MonoBehaviour
 
         float progress = 0.0f;
 
-        while(progress < 1.0f)
+        while(progress < 0.5f)
         {
             progress += Time.deltaTime;
 

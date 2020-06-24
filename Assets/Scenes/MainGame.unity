@@ -121,6 +121,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &3831039 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6634238152490956728, guid: 9c0bd083740322c4da05c3b06eda4a29,
+    type: 3}
+  m_PrefabInstance: {fileID: 7676482898141955652}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -133,6 +139,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -161,12 +168,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   randomFillPercent: 49
-  width: 20
-  height: 20
+  width: 160
+  height: 90
   seed: 55.24743
   useRandomSeed: 0
   tileSprites:
   - {fileID: -2431634634496974615, guid: ebb64c401d68cbc429ae11d0f8f95a3b, type: 3}
+  enemyPrefab: {fileID: 2699747040297903696, guid: 13b4d146efd7cd640b2d70c237142847,
+    type: 3}
+  bottomEdgePrefab: {fileID: 556198026917029166, guid: cd9f466289b1aa2459f650fe1c8a006d,
+    type: 3}
+  topEdgePrefab: {fileID: 556198026917029166, guid: 8a9a627245c55fb46ab4fb33b9f64cf3,
+    type: 3}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -177,7 +190,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0.03137255, b: 0.35686275, a: 0}
+  m_BackGroundColor: {r: 0.04125135, g: 0.084905684, b: 0.04838561, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -224,6 +237,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebcbd96ebd7f00f4cbb7ada53f1b5854, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 3831039}
 --- !u!1001 &7676482898141955652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -240,6 +266,11 @@ PrefabInstance:
     - target: {fileID: 5111146865019191200, guid: 9c0bd083740322c4da05c3b06eda4a29,
         type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5111146865019191200, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6634238152490956728, guid: 9c0bd083740322c4da05c3b06eda4a29,

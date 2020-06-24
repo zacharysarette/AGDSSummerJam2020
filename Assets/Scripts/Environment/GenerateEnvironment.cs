@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class GenerateEnvironment : MonoBehaviour
@@ -10,17 +11,15 @@ public class GenerateEnvironment : MonoBehaviour
     [SerializeField] private string seed;
     [SerializeField] private bool useRandomSeed;
     [SerializeField] private List<Sprite> tileSprites;
-    
+    [SerializeField] private GameObject 
+        enemyPrefab,
+        bottomEdgePrefab,
+        topEdgePrefab;
     private List<GameObject> currentTiles = new List<GameObject>();
     private int[,] map;
     GameObject tileParent = null;
 
     private void Start() => GenerateMap();
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-            GenerateMap();
-    }
     private void GenerateMap()
     {
         map = new int[width, height];
@@ -114,10 +113,30 @@ public class GenerateEnvironment : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                if (map[x, y] == 0)
-                    continue;
-
                 Vector3 pos = new Vector3(-width / 2 + x + .5f, -height / 2 + y + .5f, 0);
+
+                if (map[x, y] == 0)
+                {
+                    if (Random.Range(0, 30) == 0)
+                    {
+                        var enemyGo = Instantiate(enemyPrefab, pos, Quaternion.identity);
+                        enemyGo.GetComponent<SpriteRenderer>().color = new Color(Random.Range(0.5f, 1.0f), Random.Range(0.5f, 1.0f), Random.Range(0.5f, 1.0f));
+                    }
+                    
+                    if(y < height - 1 && map[x,y+1] == 1)
+                    {
+                        var edgeGo = Instantiate(bottomEdgePrefab, pos, Quaternion.identity);
+                        currentTiles.Add(edgeGo);
+                    }
+                    if(y > 0 && map[x,y - 1] == 1)
+                    {
+                        var edgeGo = Instantiate(topEdgePrefab, pos, Quaternion.identity);
+                        currentTiles.Add(edgeGo);
+                    }
+                    continue;
+                }
+
+                
                 
                 var go = new GameObject("Tile (" + pos.x + "," + pos.y + ")");
                 go.transform.parent = tileParent.transform;
@@ -146,6 +165,12 @@ public class GenerateEnvironment : MonoBehaviour
 
                 currentTiles.Add(go);
             }
+        }
+
+        foreach(var go in currentTiles)
+        {
+            if (go.TryGetComponent<EdgeRemoveCheck>(out var erc))
+                erc.StartChecking();
         }
     }
 }
