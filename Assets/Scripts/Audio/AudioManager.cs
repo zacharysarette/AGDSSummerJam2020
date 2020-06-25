@@ -143,12 +143,14 @@ public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1
 
   public void SetMusicVolume(float volume)
   {
-    musicSource.volume = volume;
-    musicSource2.volume = volume;
+    musicSource.volume =
+    musicSource2.volume =
+    defaultMusicVolume = volume;
   }
   public void SetSfxVolume(float volume)
   {
-    sfxSource.volume = volume;
+    sfxSource.volume =
+    defaultSfxVolume = volume;
   }
 
   public float GetSfxVolume()
@@ -161,15 +163,6 @@ public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1
     return musicSource.volume;
   }
 
-  public void SetDefaultSfxVolume(float volume)
-  {
-    defaultSfxVolume = volume;
-  }
-
-  public void SetDefaultMusicVolume(float volume)
-  {
-    defaultMusicVolume = volume;
-  }
   public float GetDefaultSfxVolume()
   {
     return defaultSfxVolume;
