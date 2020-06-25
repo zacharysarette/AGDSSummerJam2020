@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
@@ -6,6 +7,8 @@ public class EnemyMove : MonoBehaviour
     private Coroutine moving = null;
     private void Start() => moving = StartCoroutine(Move());
     private bool justJumped;
+    [SerializeField]
+    private List<GameObject> gems;
     private IEnumerator Move()
     {
         while (true)
@@ -67,7 +70,14 @@ public class EnemyMove : MonoBehaviour
         if (collision.collider.CompareTag("Tile") && collision.collider.gameObject.TryGetComponent<TileFallCheck>(out var tfc))
         {
             if (tfc.isFalling)
+            {
+                var rand = Random.Range(0, 3);
+                if (rand == 0)
+                    Instantiate(gems[0], transform.position, Quaternion.identity);
+                else if (rand == 1)
+                    Instantiate(gems[1], transform.position, Quaternion.identity);
                 Destroy(gameObject);
+            }
         }
     }
 }

@@ -22,23 +22,38 @@ public class PlayerControls : MonoBehaviour
 
     private GameObject digPreviewInstance;
 
-    private void Start() => digPreviewInstance = Instantiate(tileDigPreview, transform.position, Quaternion.identity);
+    Vector2 moveDirection;
+    private void Start()
+    {
+        digPreviewInstance = Instantiate(tileDigPreview, transform.position, Quaternion.identity);
+        StartCoroutine(ResolveMovement());
+    }
+
+    private IEnumerator ResolveMovement()
+    {
+        while(true)
+        {
+            transform.position += new Vector3(moveDirection.x, moveDirection.y);
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
     private void Update()
     {
-        if (Input.GetKeyDown(left))
+        moveDirection = Vector2.zero;
+        if (Input.GetKey(left))
         {
-            transform.position -= Vector3.right;
+            moveDirection = -Vector3.right;
             GetComponent<SpriteRenderer>().flipX = false;
         }
-        if (Input.GetKeyDown(right))
+        if (Input.GetKey(right))
         {
-            transform.position += Vector3.right;
+            moveDirection = Vector3.right;
             GetComponent<SpriteRenderer>().flipX = true;
         }
-        if (Input.GetKeyDown(up))
-            transform.position += Vector3.up;
-        if(Input.GetKeyDown(down))
-            transform.position -= Vector3.up;
+        if (Input.GetKey(up))
+            moveDirection = Vector3.up;
+        if(Input.GetKey(down))
+            moveDirection = -Vector3.up;
 
         bool isAttacking = false;
 
