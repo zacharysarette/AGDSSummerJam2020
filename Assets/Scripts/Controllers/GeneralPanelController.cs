@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GeneralPanelController : MonoBehaviour
 {
+
     [SerializeField]
     private Canvas panelCanvas;
 

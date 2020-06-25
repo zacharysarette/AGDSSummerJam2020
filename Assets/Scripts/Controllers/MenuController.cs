@@ -6,6 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    [Header("Text Loaders")]
+    [SerializeField]
+    private TextLoader aboutTextLoader;
+    [SerializeField]
+    private TextLoader howToPlayTextLoader;
+    [Header("Panel Controller")]
+
     [SerializeField]
     public GeneralPanelController aboutController;
     [SerializeField]
@@ -13,6 +20,7 @@ public class MenuController : MonoBehaviour
     [SerializeField]
     public SettingsController settingsController;
     [SerializeField]
+    [Header("Buttons")]
     private Button buttonStart;
     [SerializeField]
     private Button buttonAbout;
@@ -39,10 +47,12 @@ public class MenuController : MonoBehaviour
     public void onButtonAboutClick()
     {
         aboutController.enableCanvas();
+        aboutTextLoader.LoadText();
     } 
     public void onButtonHowToPlayClick()
     {
         howToPlayController.enableCanvas();
+        howToPlayTextLoader.LoadText();
     } 
     public void onButtonSettingsClick()
     {
