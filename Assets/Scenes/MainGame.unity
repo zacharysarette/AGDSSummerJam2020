@@ -750,6 +750,66 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4563768835970637719, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: healthbar
+      value: 
+      objectReference: {fileID: 1899428766}
+    - target: {fileID: -4563768835970637719, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: healthbarTransform
+      value: 
+      objectReference: {fileID: 1899428765}
+    - target: {fileID: -4563768835970637719, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: vibrateFrequency
+      value: 1100
+      objectReference: {fileID: 0}
+    - target: {fileID: -4563768835970637719, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: vibrateAmplitude
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4563768835970637719, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: vibrateMinFrequency
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 560106716851197725, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 560106716851197725, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 560106716851197725, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 560106716851197725, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 560106716851197725, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 560106716851197725, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 560106716851197725, guid: 9c0bd083740322c4da05c3b06eda4a29,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 562343662626442034, guid: 9c0bd083740322c4da05c3b06eda4a29,
         type: 3}
       propertyPath: m_Sprite
