@@ -143,3 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90e26cd480500d4588b9bccbb85e149, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gems:
+  - {fileID: 2421629345866420086, guid: 4ad9cb6ac8d991848895e7f911b705da, type: 3}
+  - {fileID: 4532619783088935961, guid: 0be3ca94f548bb24fb538d214c142281, type: 3}

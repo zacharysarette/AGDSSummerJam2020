@@ -10,6 +10,9 @@ public class TileFallCheck : MonoBehaviour
     {
         while (true)
         {
+            if (transform.position.y < GenerateEnvironment.minBound)
+                Destroy(gameObject);
+
             var topHits = Physics2D.RaycastAll(transform.position, Vector2.up, 1.0f);
             var bottomHits = Physics2D.RaycastAll(transform.position, -Vector2.up, 1.0f);
 
@@ -27,7 +30,7 @@ public class TileFallCheck : MonoBehaviour
                 isFalling = false;
             }
             // Nothing above, Enemy below
-            else if (topHits.Length == 0 && bottomHits.Length == 1 && bottomHits[0].collider.CompareTag("Enemy"))
+            else if (topHits.Length == 0 && bottomHits.Length == 1 && (bottomHits[0].collider.CompareTag("Enemy") || bottomHits[0].collider.CompareTag("Gem")))
             {
                 transform.position -= Vector3.up;
                 isFalling = true;
