@@ -37,6 +37,11 @@ public class AudioManager : MonoBehaviour
   private AudioSource musicSource2;
   private AudioSource sfxSource;
 
+  [Range(0, 1)]
+  public float defaultMusicVolume = 0.6f;
+  [Range(0, 1)]
+  public float defaultSfxVolume = 0.6f;
+
   #endregion
 
   private void Awake()
@@ -56,7 +61,7 @@ public class AudioManager : MonoBehaviour
   {
     AudioSource activeSource = getCurrentMusicSource();
     activeSource.clip = musicClip;
-    activeSource.volume = 1;
+    activeSource.volume = defaultMusicVolume;
     activeSource.Play();
   }
 
@@ -88,7 +93,7 @@ public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1
 
       for (t = 0; t < transitionTime; t += Time.deltaTime)
       {
-        activeSource.volume = (1 - (t / transitionTime));
+        activeSource.volume = defaultMusicVolume * (1 - (t / transitionTime));
         yield return null;
       }
 
@@ -98,7 +103,7 @@ public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1
 
       for (t = 0; t < transitionTime; t += Time.deltaTime)
       {
-        activeSource.volume = t / transitionTime;
+        activeSource.volume = defaultMusicVolume * (t / transitionTime);
         yield return null;
       }
   }
@@ -119,7 +124,7 @@ public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1
   public void PlaySfx(AudioClip clip)
   {
         if (!sfxSource.isPlaying)
-            sfxSource.PlayOneShot(clip);     
+            sfxSource.PlayOneShot(clip, defaultSfxVolume);     
   }
 
   public void PlaySfx(AudioClip clip, float volume)
@@ -154,6 +159,25 @@ public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1
   public float GetMusicVolume()
   {
     return musicSource.volume;
+  }
+
+  public void SetDefaultSfxVolume(float volume)
+  {
+    defaultSfxVolume = volume;
+  }
+
+  public void SetDefaultMusicVolume(float volume)
+  {
+    defaultMusicVolume = volume;
+  }
+  public float GetDefaultSfxVolume()
+  {
+    return defaultSfxVolume;
+  }
+
+  public float GetDefaultMusicVolume()
+  {
+    return defaultMusicVolume;
   }
 
 }

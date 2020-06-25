@@ -19,19 +19,22 @@ public class SettingsController : MonoBehaviour
 
     private void Start()
     {
-       sfxSlider.value = AudioManager.Instance.GetSfxVolume(); 
-       musicSlider.value = AudioManager.Instance.GetMusicVolume();
+       sfxSlider.value = AudioManager.Instance.GetDefaultSfxVolume(); 
+       musicSlider.value = AudioManager.Instance.GetDefaultMusicVolume();
     }
 
     public void UpdateSfx()
     {
         AudioManager.Instance.SetSfxVolume(musicSlider.value);
+        AudioManager.Instance.SetDefaultSfxVolume(musicSlider.value);
         sfxVolumeValueText.text = sfxSlider.value.ToString("0.00");
     }
 
     public void UpdateMusic()
     {
+
         AudioManager.Instance.SetMusicVolume(musicSlider.value);
+        AudioManager.Instance.SetDefaultMusicVolume(musicSlider.value);
         musicVolumeValueText.text = musicSlider.value.ToString("0.00");
     }
 

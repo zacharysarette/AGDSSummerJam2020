@@ -9,7 +9,7 @@ public class MenuAudioController : MonoBehaviour
     public AudioClip gameMusic;
 
     void Start()
-    {
+    {   
         AudioManager.Instance.PlayMusicWithFade(music, 3f);
     }
 
