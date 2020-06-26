@@ -172,8 +172,10 @@ public class GenerateEnvironment : MonoBehaviour
                 else if (weighting < 90)
                     go.tag = "Tile";
                 else
+                {
                     sr.sprite = stoneSprite;
-
+                    go.tag = "Indestructible";
+                }
                 currentTiles.Add(go);
             }
         }
