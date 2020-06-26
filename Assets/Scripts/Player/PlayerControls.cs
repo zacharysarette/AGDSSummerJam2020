@@ -22,7 +22,7 @@ public class PlayerControls : MonoBehaviour
         attackDown;
 
     private GameObject digPreviewInstance;
-
+    
     Vector2 moveDirection;
     private void Start()
     {

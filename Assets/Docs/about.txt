@@ -4,6 +4,9 @@ Theme: Negative Space
 
 Programming
   - Zach Sarette
+  - Lewis Whiteman
+  - Dominik Frankowski
+  - Seamus Salt
 
 Art
   - Zach Sarette
@@ -11,7 +14,8 @@ Art
 Music
   - Zach Sarette
 
-Sfx
+SFX
+  - Lewis Whiteman
 
 UI
   - Zach Sarette

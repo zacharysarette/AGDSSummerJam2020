@@ -8,6 +8,6 @@ public class GameOverController : MonoBehaviour
     public void onBackToMainMenuClick()
     {
         AudioManager.Instance.StopAll();
-        SceneManager.LoadScene("MainMenu");
+        Application.Quit();
     }
 }

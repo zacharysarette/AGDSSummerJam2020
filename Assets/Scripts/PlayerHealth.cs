@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [System.NonSerialized] public bool isAlive = true; 
+    [System.NonSerialized] public bool isAlive = true;
 
     [SerializeField] private Healthbar healthbar;
     [SerializeField] private RectTransform healthbarTransform;
@@ -40,9 +40,10 @@ public class PlayerHealth : MonoBehaviour
             DamageUpdate();
             VibrateUpdate();
         }
-        else {
+        else if (SceneManager.GetActiveScene().name != "Lose")
+        {
             Time.timeScale = 0;
-            SceneManager.LoadScene("Lose", LoadSceneMode.Additive);
+            SceneManager.LoadScene("Lose", LoadSceneMode.Single);
         }
     }
 
@@ -54,7 +55,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.transform.CompareTag("Tile") || collision.transform.CompareTag("Indestructible"))
+        if (collision.transform.CompareTag("Tile") || collision.transform.CompareTag("Indestructible"))
         {
             isTakingDamage = false;
             startTakingDamage = false;
@@ -92,7 +93,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void VibrateUpdate()
     {
-        if(isTakingDamage)
+        if (isTakingDamage)
         {
             if (vibrateXComponent >= 360.0f)
                 vibrateXComponent -= 360.0f;
@@ -103,7 +104,7 @@ public class PlayerHealth : MonoBehaviour
 
             healthbarTransform.position = new Vector3(healthbarTransform.position.x, originalHealthbarY + newHeightOffset, healthbarTransform.position.z);
         }
-        else if(healthbarTransform.position.y != originalHealthbarY)
+        else if (healthbarTransform.position.y != originalHealthbarY)
             healthbarTransform.position = new Vector3(healthbarTransform.position.x, originalHealthbarY, healthbarTransform.position.z);
     }
 }

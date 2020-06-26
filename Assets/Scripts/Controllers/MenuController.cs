@@ -41,6 +41,7 @@ public class MenuController : MonoBehaviour
     public void onButtonStartClick()
     {
         Debug.Log("Opening MainGame");
+        ScoreTracker.score = 0;
         SceneManager.LoadScene("MainGame");
          
     } 

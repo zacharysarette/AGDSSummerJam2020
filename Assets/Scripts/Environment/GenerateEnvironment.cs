@@ -4,7 +4,8 @@ using UnityEngine;
 public class GenerateEnvironment : MonoBehaviour
 {
     public static GenerateEnvironment instance = null;
-
+    [SerializeField]
+    private Material LitDefaultMat;
     public static int minBound => 0 - instance.height / 2;
 
     [Range(0, 100)]
@@ -166,13 +167,18 @@ public class GenerateEnvironment : MonoBehaviour
                 {
                     go.AddComponent<TileFallCheck>();
                     sr.sprite = gravelSprite;
+                    sr.material = LitDefaultMat;
                     go.tag = "Tile";
                 }
                 else if (weighting < 90)
+                {
                     go.tag = "Tile";
+                    sr.material = LitDefaultMat;
+                }
                 else
                 {
                     sr.sprite = stoneSprite;
+                    sr.material = LitDefaultMat;
                     go.tag = "Indestructible";
                 }
                 currentTiles.Add(go);
