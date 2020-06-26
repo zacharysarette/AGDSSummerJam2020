@@ -41,15 +41,15 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.CompareTag("Tile"))
+        if (collision.transform.CompareTag("Tile") || collision.transform.CompareTag("Indestructible"))
             startTakingDamage = true;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("Tile"))
+        if(collision.transform.CompareTag("Tile") || collision.transform.CompareTag("Indestructible"))
         {
             isTakingDamage = false;
             startTakingDamage = false;
