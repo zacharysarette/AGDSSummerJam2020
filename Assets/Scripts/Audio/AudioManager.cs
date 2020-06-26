@@ -153,6 +153,13 @@ public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1
     defaultSfxVolume = volume;
   }
 
+  public void StopAll()
+  {
+    sfxSource.Stop();
+    musicSource.Stop();
+    musicSource2.Stop();
+  }
+
   public float GetSfxVolume()
   {
     return sfxSource.volume;
