@@ -33,7 +33,8 @@ public class PlayerControls : MonoBehaviour
     {
         while(true)
         {
-            transform.position += new Vector3(moveDirection.x, moveDirection.y);
+            var targetPos = new Vector3(moveDirection.x, moveDirection.y) + transform.position;
+            transform.position = new Vector3(Mathf.Clamp(targetPos.x, -79.5f, 79.5f), Mathf.Clamp(targetPos.y, -44.5f, 44.5f), targetPos.z);
             yield return new WaitForSeconds(0.1f);
         }
     }
@@ -101,6 +102,8 @@ public class PlayerControls : MonoBehaviour
 
         StartCoroutine(Invulnerability());
     }
+
+
 
     private void Die()
     {
