@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -38,6 +39,10 @@ public class PlayerHealth : MonoBehaviour
         {
             DamageUpdate();
             VibrateUpdate();
+        }
+        else {
+            Time.timeScale = 0;
+            SceneManager.LoadScene("Lose", LoadSceneMode.Additive);
         }
     }
 

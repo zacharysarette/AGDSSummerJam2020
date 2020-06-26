@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -90,6 +91,8 @@ public class PlayerControls : MonoBehaviour
 
         if (isAttacking)
             digPreviewInstance.GetComponent<Dig>().StartDig();
+
+
     }
 
     public void TakeDamage()
@@ -107,8 +110,9 @@ public class PlayerControls : MonoBehaviour
 
     private void Die()
     {
-        Debug.Log("Ded");
+        Debug.Log("Dead");
     }
+
 
     private IEnumerator Invulnerability()
     {
