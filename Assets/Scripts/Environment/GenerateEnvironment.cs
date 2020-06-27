@@ -3,18 +3,20 @@ using UnityEngine;
 
 public class GenerateEnvironment : MonoBehaviour
 {
-    public static GenerateEnvironment instance = null;
-    [SerializeField]
+  private static GenerateEnvironment instance = null;
+  [SerializeField]
     private Material LitDefaultMat;
-    public static int minBound => 0 - instance.height / 2;
+    public static int minBound => 0 - Instance.height / 2;
 
-    [Range(0, 100)]
+  public static GenerateEnvironment Instance { get => instance; set => instance = value; }
+
+  [Range(0, 100)]
     [SerializeField] private int randomFillPercent;
     [SerializeField] private int width;
     [SerializeField] private int height;
     [SerializeField] private string seed;
     [SerializeField] private bool useRandomSeed;
-    [SerializeField] private List<Sprite> tileSprites;
+    [SerializeField] private List<Sprite> tileSprites ;
     [SerializeField] private Sprite stoneSprite;
     [SerializeField] private Sprite gravelSprite;
     [SerializeField]
@@ -28,10 +30,17 @@ public class GenerateEnvironment : MonoBehaviour
 
     private void Start()
     {
+        if (Instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        } else {
+            Instance = this;
+        }
         GenerateMap();
-        instance = this;
+    
     }
-    private void GenerateMap()
+
+    public void GenerateMap()
     {
         map = new int[width, height];
         RandomFillMap();

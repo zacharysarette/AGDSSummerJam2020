@@ -4,8 +4,26 @@ using UnityEngine;
 
 public class TileFallCheck : MonoBehaviour
 {
-    public bool isFalling;
-    void Start() => StartCoroutine(DoFallCheck());
+  private bool isFalling;
+
+  public bool IsFalling
+  {
+    get
+    {
+      return isFalling;
+    }
+
+    set
+    {
+      isFalling = value;
+      if (value == true)
+      {
+        GameAudioController.playDroppingCrates();
+      }
+    }
+  }
+
+  void Start() => StartCoroutine("DoFallCheck");
     private IEnumerator DoFallCheck()
     {
         while (true)
@@ -20,28 +38,26 @@ public class TileFallCheck : MonoBehaviour
             if (topHits.Length == 0 && bottomHits.Length == 0)
             {
                 transform.position -= Vector3.up;
-                isFalling = true;
-                GameAudioController.playDroppingCrates();
+
+                IsFalling = true;
             }
             // Gravel Tile above, nothing below
             else if (topHits.Length == 1 && topHits[0].collider.gameObject.TryGetComponent<TileFallCheck>(out var _) && bottomHits.Length == 0)
             {
                 transform.position -= Vector3.up;
-                isFalling = false;
+                IsFalling = false;
             }
             // Nothing above, Enemy below
             else if (topHits.Length == 0 && bottomHits.Length == 1 && (bottomHits[0].collider.CompareTag("Enemy") || bottomHits[0].collider.CompareTag("Gem")))
             {
                 transform.position -= Vector3.up;
-                isFalling = true;
-                GameAudioController.playDroppingCrates();
+                IsFalling = true;
             }
             // Enemy above, nothing below
             else if (topHits.Length == 1 && bottomHits.Length == 0 && topHits[0].collider.CompareTag("Enemy"))
             {
                 transform.position -= Vector3.up;
-                isFalling = true;
-                GameAudioController.playDroppingCrates();
+                IsFalling = true;
             }
 
             yield return new WaitForSeconds(0.25f);

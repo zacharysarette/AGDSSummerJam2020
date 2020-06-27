@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -41,9 +40,7 @@ public class MenuController : MonoBehaviour
     public void onButtonStartClick()
     {
         Debug.Log("Opening MainGame");
-        ScoreTracker.score = 0;
-        SceneManager.LoadScene("MainGame");
-         
+        StartCoroutine(LoadSceneASync("MainGame"));
     } 
     public void onButtonAboutClick()
     {
@@ -64,4 +61,14 @@ public class MenuController : MonoBehaviour
         Debug.Log("Quitting");
         Application.Quit();
     } 
+
+    IEnumerator LoadSceneASync(string scene)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
 }

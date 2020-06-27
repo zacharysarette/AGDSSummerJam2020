@@ -6,7 +6,7 @@ public class EdgeRemoveCheck : MonoBehaviour
     [SerializeField]
     private Vector3 direction;
 
-    public void StartChecking() => StartCoroutine(Check());
+    public void StartChecking() => StartCoroutine("Check");
 
     private IEnumerator Check()
     {

@@ -23,8 +23,7 @@ public class PlayerHealth : MonoBehaviour
         vibrateXComponent,
         originalHealthbarY;
 
-    private bool isTakingDamage = false,
-        startTakingDamage = false;
+    private bool startTakingDamage = false;
 
     private void Start()
     {
@@ -42,49 +41,55 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (SceneManager.GetActiveScene().name != "Lose")
         {
-            Time.timeScale = 0;
-            SceneManager.LoadScene("Lose", LoadSceneMode.Single);
+            StartCoroutine(LoadSceneASync("Lose"));
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Tile") || collision.transform.CompareTag("Indestructible"))
+        {
             startTakingDamage = true;
-    }
+        } 
+
+    } 
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("Tile") || collision.transform.CompareTag("Indestructible"))
         {
-            isTakingDamage = false;
             startTakingDamage = false;
-        }
+        } 
     }
 
     private void DamageUpdate()
     {
-        //  Update isTakingDamage and reset the current health decrease
-        if (startTakingDamage && !isTakingDamage)
+        if (!startTakingDamage)
         {
-            isTakingDamage = true;
-            currentHealthDecrease = 0.0f;
+            return;
         }
 
         //  Update amount of health by which to decrease
-        if (isTakingDamage)
-        {
-            currentHealthDecrease += healthDecrementRate * Time.deltaTime;
+        if (startTakingDamage)
+        {   
+  
+            currentHealthDecrease += healthDecrementRate * Time.deltaTime;;
             if (currentHealthDecrease >= 1.0f)
-            {
+            {   
                 currentHealthDecrease -= 1.0f;
                 currentHealth -= 1;
+            } else {
+                GameAudioController.playBuzz();
             }
         }
 
         //  Update slider
-        if (currentHealth != healthbar.GetSliderValue())
+        if (currentHealth != healthbar.GetSliderValue()) 
+        {
             healthbar.SetHealth(currentHealth);
+            AudioManager.Instance.StopSfx();
+            GameAudioController.playHurt();
+        }
 
         //  Update isAlive
         if (currentHealth == 0)
@@ -93,7 +98,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void VibrateUpdate()
     {
-        if (isTakingDamage)
+        if (startTakingDamage)
         {
             if (vibrateXComponent >= 360.0f)
                 vibrateXComponent -= 360.0f;
@@ -106,5 +111,15 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (healthbarTransform.position.y != originalHealthbarY)
             healthbarTransform.position = new Vector3(healthbarTransform.position.x, originalHealthbarY, healthbarTransform.position.z);
+    }
+
+    IEnumerator LoadSceneASync(string scene)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
 }

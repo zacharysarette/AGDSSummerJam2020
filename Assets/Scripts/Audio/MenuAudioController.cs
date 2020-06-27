@@ -6,15 +6,9 @@ public class MenuAudioController : MonoBehaviour
 {
     public AudioClip music;
 
-    public AudioClip gameMusic;
-
     void Start()
-    {   
-        AudioManager.Instance.PlayMusicWithFade(music, 3f);
+    {  
+        AudioManager.Instance.PlayMusicWithCrossFade(music, 0.5f);
     }
 
-    public void playGameMusic()
-    {
-        AudioManager.Instance.PlayMusicWithCrossFade(gameMusic, 2f);
-    }
 }

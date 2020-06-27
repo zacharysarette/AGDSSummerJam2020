@@ -8,6 +8,7 @@ public class GemInteraction : MonoBehaviour
         if(collision.collider.CompareTag("Player"))
         {
             ScoreTracker.AddScore(scoreOnPickup);
+            GameAudioController.playRubyPickup();
             Destroy(gameObject);
         }
     }

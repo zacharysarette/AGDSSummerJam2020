@@ -6,14 +6,15 @@ public class Dig : MonoBehaviour
     [SerializeField]
     private Sprite blackSprite;
     [SerializeField]
-    private Collider2D collider;
+    private Collider2D digCollider;
 
     Coroutine isDigging;
     GameObject targetTile = null;
+
     public void StartDig()
     {
         if(isDigging == null)
-            isDigging = StartCoroutine(Digging());
+            isDigging = StartCoroutine("Digging");
     }
     private IEnumerator Digging()
     {
@@ -25,7 +26,7 @@ public class Dig : MonoBehaviour
         {
             progress += Time.deltaTime;
 
-            if (targetTile == null || !collider.enabled)
+            if (targetTile == null || !digCollider.enabled)
             {
                 isDigging = null;
                 yield break;
@@ -35,6 +36,7 @@ public class Dig : MonoBehaviour
         }
 
         Destroy(targetTile);
+        GameAudioController.playDig();
         targetTile = null;
 
         isDigging = null;

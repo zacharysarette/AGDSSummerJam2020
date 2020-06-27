@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +6,24 @@ public class GameOverController : MonoBehaviour
 {
     public void onBackToMainMenuClick()
     {
-        AudioManager.Instance.StopAll();
-        Application.Quit();
+        StartCoroutine(LoadYourAsyncScene("MainMenu"));
+    }
+    public void onBackToLoseSceneClick()
+    {
+        StartCoroutine(LoadYourAsyncScene("Lose"));
+    }
+    public void onBackToWinSceneClick()
+    {
+        StartCoroutine(LoadYourAsyncScene("Win"));
+    }
+
+    IEnumerator LoadYourAsyncScene(string scene)
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(scene);
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
     }
 }

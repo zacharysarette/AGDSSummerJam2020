@@ -16,6 +16,7 @@ Music
 
 SFX
   - Lewis Whiteman
+  - Zach Sarette
 
 UI
   - Zach Sarette

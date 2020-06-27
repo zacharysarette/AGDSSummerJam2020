@@ -27,7 +27,7 @@ public class PlayerControls : MonoBehaviour
     private void Start()
     {
         digPreviewInstance = Instantiate(tileDigPreview, transform.position, Quaternion.identity);
-        StartCoroutine(ResolveMovement());
+        StartCoroutine("ResolveMovement");
     }
 
     private IEnumerator ResolveMovement()
@@ -103,7 +103,7 @@ public class PlayerControls : MonoBehaviour
         if (Health == 0)
             Die();
 
-        StartCoroutine(Invulnerability());
+        StartCoroutine("Invulnerability");
     }
 
 
@@ -120,5 +120,4 @@ public class PlayerControls : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         invulnerable = false;
     }
-
 }

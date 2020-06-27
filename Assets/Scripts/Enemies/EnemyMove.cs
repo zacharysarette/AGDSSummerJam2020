@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class EnemyMove : MonoBehaviour
 {
-    private Coroutine moving = null;
-    private void Start() => moving = StartCoroutine(Move());
     private bool justJumped;
     [SerializeField]
     private List<GameObject> gems;
+    private void Start() {
+        StartCoroutine("Move");
+    }
     private IEnumerator Move()
     {
+        Debug.Log("Enemy Moving");
         while (true)
         {
             var bottomHits = Physics2D.RaycastAll(transform.position, -Vector2.up, 1.0f);
@@ -69,7 +71,7 @@ public class EnemyMove : MonoBehaviour
     {
         if (collision.collider.CompareTag("Tile") && collision.collider.gameObject.TryGetComponent<TileFallCheck>(out var tfc))
         {
-            if (tfc.isFalling)
+            if (tfc.IsFalling)
             {
                 var rand = Random.Range(0, 3);
                 if (rand == 0)

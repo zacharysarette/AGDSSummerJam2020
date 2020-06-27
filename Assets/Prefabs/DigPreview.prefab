@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackSprite: {fileID: 21300000, guid: cf74b87912c3b2741bd6a74f37125c65, type: 3}
-  collider: {fileID: -5135282491735924525}
+  digCollider: {fileID: -5135282491735924525}
 --- !u!61 &-5135282491735924525
 BoxCollider2D:
   m_ObjectHideFlags: 0

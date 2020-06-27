@@ -46,6 +46,12 @@ public class AudioManager : MonoBehaviour
 
   private void Awake()
   {
+    if (instance != null && instance != this)
+    {
+        Destroy(this.gameObject);
+    } else {
+        instance = this;
+    }
     DontDestroyOnLoad(this.gameObject);
 
     musicSource = this.gameObject.AddComponent<AudioSource>();
@@ -76,7 +82,6 @@ public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1
   AudioSource activeSource = getCurrentMusicSource();
   AudioSource newSource = getNonCurrentMusicSource();
 
-  isFirstMusicSourcePlaying = !isFirstMusicSourcePlaying;
 
   newSource.clip = musicClip;
   newSource.Play();
@@ -119,6 +124,7 @@ public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1
       yield return null;
     }
     original.Stop();
+    isFirstMusicSourcePlaying = !isFirstMusicSourcePlaying;
   }
 
   public void PlaySfx(AudioClip clip)
@@ -156,8 +162,11 @@ public void PlayMusicWithCrossFade(AudioClip musicClip, float transitionTime = 1
   public void StopAll()
   {
     sfxSource.Stop();
-    musicSource.Stop();
-    musicSource2.Stop();
+    getCurrentMusicSource().Stop();
+  }
+
+  public void StopSfx() {
+    sfxSource.Stop();
   }
 
   public float GetSfxVolume()

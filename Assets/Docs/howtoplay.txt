@@ -5,6 +5,9 @@ You can't breathe the air.
 Somehow, you can squeeze your way through the rocks and dirt just fine though...
 
 Objective:
+
+Collect 20 Gems!
+
 Stay within the walls, going into the open caves will hurt you.
 Use your shovel to collapse parts of the caves and trap / kill the enemies. It's probably worthwile checking their pockets too!
 If the treasure isn't buried already, you'll need to bury it before you can safely collect it.
